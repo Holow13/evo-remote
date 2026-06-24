@@ -19,7 +19,7 @@
 
 Скрипт сам качает **ADB** и Python-библиотеки. Руками ничего не надо, если есть интернет.
 
-ADB окажется тут: `C:\adb\` или `%LOCALAPPDATA%\evo-remote\platform-tools\`
+ADB уже лежит в **`adb\`** в папке проекта. Если его нет — `install.bat` скачает в `%LOCALAPPDATA%\evo-remote\platform-tools\`
 
 Инета нет на клубном ПК? Скачай zip дома:  
 https://dl.google.com/android/repository/platform-tools-latest-windows.zip  
@@ -104,7 +104,7 @@ https://dl.google.com/android/repository/platform-tools-latest-windows.zip
 
 Проще всего: **`adb\pair_tv.bat`** в папке проекта. Скрипт проведёт через pair, connect и `tcpip 5555`.
 
-Или в cmd вручную. ADB лежит в **`adb\`** в проекте (или `C:\adb` если ставил отдельно).
+Или в cmd вручную (из корня проекта после `git clone`):
 
 **1) Pair (сопряжение)**
 
@@ -112,7 +112,7 @@ https://dl.google.com/android/repository/platform-tools-latest-windows.zip
 Запиши IP, порт и 6 цифр.
 
 ```text
-cd путь\к\evo-remote\adb
+cd adb
 adb kill-server
 adb pair 192.168.2.68:40323
 ```
@@ -150,7 +150,7 @@ adb devices
 
 | Что пишет | Что делать |
 |-----------|------------|
-| `adb` не команда | `install.bat` или `C:\adb\adb.exe` |
+| `adb` не команда | Запусти из папки `adb\` или `install.bat` |
 | `protocol fault` | Старый код/порт, закрыл pair, TV не на Wi‑Fi |
 | `device not found` на tcpip | Pair не прошёл, connect по временному порту |
 | `connect :5555` отказ | Не делал `tcpip 5555` или TV перезагрузился |

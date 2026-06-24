@@ -10,7 +10,10 @@ import urllib.request
 import zipfile
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from paths import BUNDLED_ADB_EXE, PROJECT_ROOT
+
+ROOT = PROJECT_ROOT
 OVERLAY = ROOT / "overlay-app"
 SDK_ROOT = Path(os.environ.get("ANDROID_HOME", Path.home() / "AppData/Local/Android/Sdk"))
 TOOLS_ZIP_URLS = [
@@ -416,7 +419,7 @@ def build_apk(sdk: Path) -> Path:
 
 
 def install_apk(apk: Path) -> None:
-    adb_candidates = [Path("C:/adb/adb.exe"), Path("adb.exe")]
+    adb_candidates = [BUNDLED_ADB_EXE, ROOT / "adb" / "platform-tools" / "adb.exe"]
     adb = next((p for p in adb_candidates if p.exists()), None)
     if adb is None:
         adb = shutil.which("adb")

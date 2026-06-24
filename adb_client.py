@@ -10,6 +10,8 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from adb_shell.adb_device import AdbDeviceTcp
+
+from paths import BUNDLED_ADB_EXE
 from adb_shell.auth.sign_pythonrsa import PythonRSASigner
 
 KEYCODES = {
@@ -42,12 +44,11 @@ class CommandResult:
 
 
 def _find_adb_exe() -> Path | None:
-    bundled = Path(__file__).resolve().parent / "adb" / "adb.exe"
+    local_app = Path.home() / "AppData" / "Local"
     candidates = [
-        bundled,
-        Path("C:/adb/adb.exe"),
-        Path.home() / "AppData/Local/evo-remote/platform-tools/adb.exe",
-        Path.home() / "AppData/Local/Android/Sdk/platform-tools/adb.exe",
+        BUNDLED_ADB_EXE,
+        local_app / "evo-remote" / "platform-tools" / "adb.exe",
+        local_app / "Android" / "Sdk" / "platform-tools" / "adb.exe",
     ]
     for path in candidates:
         if path.exists():
