@@ -1,0 +1,23 @@
+# Ручная загрузка (если скрипт не качает)
+
+## 1. Android commandline-tools (Windows)
+https://dl.google.com/android/repository/commandlinetools-win-11076708_latest.zip
+Зеркало: https://mirrors.cloud.tencent.com/AndroidSDK/commandlinetools-win-11076708_latest.zip
+
+Распакуйте в: %LOCALAPPDATA%\Android\Sdk\cmdline-tools\latest\
+(внутри должно быть bin\sdkmanager.bat)
+
+## 2. Gradle 8.5 (если нужен вручную)
+https://services.gradle.org/distributions/gradle-8.5-bin.zip
+Зеркало: https://github.com/gradle/gradle-distributions/releases/download/v8.5.0/gradle-8.5-bin.zip
+
+## 3. gradle-wrapper.jar → положить в overlay-app\gradle\wrapper\
+https://github.com/gradle/gradle/raw/v8.5.0/gradle/wrapper/gradle-wrapper.jar
+
+## 4. Java JDK 17+
+https://adoptium.net/temurin/releases/?version=17
+
+## После ручной установки SDK:
+cd overlay-app
+gradlew.bat assembleDebug
+adb install -r app\build\outputs\apk\debug\app-debug.apk

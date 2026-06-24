@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# App data (local config, keys, screenshots)
+.evo-remote/
+
+# Offline downloads (large zips — keep README.txt)
+downloads/*
+!downloads/README.txt
+
+# Android / Gradle build (кроме готового APK для установки на TV)
+overlay-app/.gradle/
+overlay-app/build/
+overlay-app/app/build/*
+!overlay-app/app/build/outputs/
+overlay-app/app/build/outputs/*
+!overlay-app/app/build/outputs/apk/
+overlay-app/app/build/outputs/apk/*
+!overlay-app/app/build/outputs/apk/debug/
+overlay-app/app/build/outputs/apk/debug/*
+!overlay-app/app/build/outputs/apk/debug/app-debug.apk
+overlay-app/local.properties
+overlay-app/.idea/
+*.iml
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Scrcpy binary (optional local)
+tools/scrcpy/
