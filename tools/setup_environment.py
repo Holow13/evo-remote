@@ -11,6 +11,7 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+BUNDLED_ADB_DIR = ROOT / "adb"
 LOCAL_DOWNLOADS = ROOT / "downloads"
 REQUIREMENTS = ROOT / "requirements.txt"
 APK_PATH = ROOT / "overlay-app" / "app" / "build" / "outputs" / "apk" / "debug" / "app-debug.apk"
@@ -21,6 +22,7 @@ PLATFORM_TOOLS_URLS = [
 ]
 
 ADB_LOCATIONS = [
+    BUNDLED_ADB_DIR,
     Path("C:/adb"),
     Path(os.environ.get("LOCALAPPDATA", Path.home() / "AppData/Local")) / "evo-remote" / "platform-tools",
 ]
@@ -102,6 +104,10 @@ def extract_platform_tools(zip_path: Path, dest_dir: Path) -> None:
 
 def install_adb() -> Path:
     log("\n[2/3] Android platform-tools (adb.exe)")
+    bundled = BUNDLED_ADB_DIR / "adb.exe"
+    if bundled.exists():
+        log(f"  OK — в комплекте с проектом: {bundled}")
+        return bundled
     dest_dir = pick_adb_dir()
     adb_exe = dest_dir / "adb.exe"
     if adb_exe.exists():

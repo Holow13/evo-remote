@@ -48,7 +48,8 @@ https://dl.google.com/android/repository/platform-tools-latest-windows.zip
 
 | Файл | Зачем |
 |------|-------|
-| `install.bat` | Первый запуск, ставит всё |
+| `install.bat` | Первый запуск, ставит Python-библиотеки |
+| `adb\pair_tv.bat` | Сопряжение TV с ADB (pair + 5555) |
 | `setup.bat` | То же |
 | `start.bat` | Сама программа |
 | `build_overlay.bat` | Собрать APK таймера |
@@ -99,9 +100,11 @@ https://dl.google.com/android/repository/platform-tools-latest-windows.zip
 
 (На французском Haier: Paramètres → Système → Options pour les développeurs)
 
-### Команды в cmd
+### Сопряжение
 
-ADB после `install.bat`: `C:\adb\adb.exe`
+Проще всего: **`adb\pair_tv.bat`** в папке проекта. Скрипт проведёт через pair, connect и `tcpip 5555`.
+
+Или в cmd вручную. ADB лежит в **`adb\`** в проекте (или `C:\adb` если ставил отдельно).
 
 **1) Pair (сопряжение)**
 
@@ -109,7 +112,7 @@ ADB после `install.bat`: `C:\adb\adb.exe`
 Запиши IP, порт и 6 цифр.
 
 ```text
-cd C:\adb
+cd путь\к\evo-remote\adb
 adb kill-server
 adb pair 192.168.2.68:40323
 ```

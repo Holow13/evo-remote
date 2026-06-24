@@ -42,7 +42,9 @@ class CommandResult:
 
 
 def _find_adb_exe() -> Path | None:
+    bundled = Path(__file__).resolve().parent / "adb" / "adb.exe"
     candidates = [
+        bundled,
         Path("C:/adb/adb.exe"),
         Path.home() / "AppData/Local/evo-remote/platform-tools/adb.exe",
         Path.home() / "AppData/Local/Android/Sdk/platform-tools/adb.exe",
